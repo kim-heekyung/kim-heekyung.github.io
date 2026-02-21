@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  
+  <div class="about-trigger">?</div>
+	<div class="about-text">
+	  <p>
+	    열매를 따보세요.
+	  </p>
+	</div>
+
+  <main class="stage">
+    <section class="frame">
+      <img class="photo" src="apple_tree_2.jpg" alt="Apple Tree" />
+
+    <div class="apple a1">🍎</div>
+    <div class="apple a2">🍏</div>
+    <div class="apple a3">🍎</div>
+
+
+    </section>
+  </main>
+
+	<script>
+	  const trigger = document.querySelector('.about-trigger');
+	  const text = document.querySelector('.about-text');
+
+	  trigger.addEventListener('click', () => {
+	    text.classList.toggle('active');
+	  });
+	</script>
+
+
+</body>
+</html>

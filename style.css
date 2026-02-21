@@ -1,0 +1,137 @@
+
+/* ---------------- 기본 세팅 ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #284839;
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard",
+               "Segoe UI", sans-serif;
+}
+
+
+/* 좌측 상단 About */
+.about-trigger {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1000;
+
+  color: rgba(255,255,255,0.6);
+}
+
+/* 텍스트 */
+.about-text {
+  position: fixed;
+  top: 80px;
+  left: 28px;
+  width: 300px;
+
+  font-size: 18px;
+  line-height: 1.6;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  pointer-events: none;
+
+  color: rgba(255,255,255,0.6);
+}
+
+/* 열렸을 때 */
+.about-text.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+/* ---------------- 중앙 무대 ---------------- */
+.stage {
+  width: min(800px, 92vw);
+}
+
+/* ---------------- 이미지 프레임 (좌표 기준) ---------------- */
+.frame {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* ---------------- 이미지 + 경계 페이드 ---------------- */
+.photo {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  border-radius: 50% / 60%;
+
+-webkit-mask-image: radial-gradient(
+  ellipse 80% 80% at center,
+  rgba(0,0,0,1) 30%,
+  rgba(0,0,0,0) 60%
+);
+
+mask-image: radial-gradient(
+  ellipse 80% 80% at center,
+  rgba(0,0,0,1) 30%,
+  rgba(0,0,0,0) 60%
+);
+}
+
+.apple {
+  position: absolute;
+  /*font-size: 20px;*/
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.apple:hover {
+  animation: swing 0.9s ease-out;
+  transform-origin: top center; /* 꼭대기에 매달린 느낌 */
+}
+
+@keyframes swing {
+  0%   { transform: rotate(0deg); }
+
+  15%  { transform: rotate(-12deg); }
+  30%  { transform: rotate(10deg); }
+
+  45%  { transform: rotate(-8deg); }
+  60%  { transform: rotate(6deg); }
+
+  75%  { transform: rotate(-3deg); }
+  90%  { transform: rotate(2deg); }
+
+  100% { transform: rotate(0deg); }
+}
+
+.a1 { 
+    left: 80%; top: 30%; 
+    font-size: 25px;
+}
+.a2 { 
+    left: 30%; top: 30%; 
+    font-size: 20px;
+}
+.a3 { 
+    left: 60%; top: 60%; 
+    font-size: 15px;
+}
+
+
+
+
+
