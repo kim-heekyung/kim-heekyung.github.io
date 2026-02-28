@@ -277,7 +277,7 @@ body {
 }
 
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
 
   .apple{
     transform: scale(0.5);
