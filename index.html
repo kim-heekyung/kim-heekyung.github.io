@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,35 +8,135 @@
 </head>
 
 <body>
-  
+  <!-- 좌측 상단 About -->
   <div class="about-trigger">?</div>
-	<div class="about-text">
-	  <p>
-	    열매를 따보세요.
-	  </p>
-	</div>
+  <div class="about-text">
+    <p>열매를 따보세요.</p>
+  </div>
 
+  <!-- 중앙 무대 -->
   <main class="stage">
     <section class="frame">
       <img class="photo" src="apple_tree_2.jpg" alt="Apple Tree" />
 
-    <div class="apple a1">🍎</div>
-    <div class="apple a2">🍏</div>
-    <div class="apple a3">🍎</div>
+      <!-- 사과(각각 다른 텍스트/링크) -->
+      <div class="apple a1"
+           data-title="작업 1"
+           data-desc="설명"
+           data-href="https://kim-heekyung.github.io/bio_on_table/"
+           data-link="Bio on table">🍎</div>
 
+      <div class="apple a2"
+           data-title="작업 2"
+           data-desc="설명."
+           data-href="https://kim-heekyung.github.io/my_sweet_little_kitty"
+           data-link="My sweet little kitty">🍏</div>
+
+      <div class="apple a3"
+           data-title="기타"
+           data-desc="설명"
+           data-href="https://kim-heekyung.github.io/writing"
+           data-link="Writing">🍎</div>
+
+      <div class="apple a4"
+           data-title="기타"
+           data-desc="기타 설명문. 링크 문구도 바꿀 수 있어."
+           data-href="https://kim-heekyung.github.io/answering_machine"
+           data-link="super TMI">🍎</div>
+
+      <!-- 사과 클릭 시, 해당 사과 위치에 뜨는 작은 라벨(링크) -->
+      <a class="apple-pop" id="applePop" href="#" target="_blank" rel="noopener">open</a>
+
+      <img class="ladder-fixed" src="ladder.png" alt="ladder" />
+
+      <div class="ladder-label">
+        <button class="pill-label" type="button"> 김희경의 핸드메이드웹 모음  </button>
+      </div>
 
     </section>
   </main>
 
-	<script>
-	  const trigger = document.querySelector('.about-trigger');
-	  const text = document.querySelector('.about-text');
-
-	  trigger.addEventListener('click', () => {
-	    text.classList.toggle('active');
-	  });
-	</script>
 
 
+
+  <script>
+    // 좌측 상단 About 토글
+    const trigger = document.querySelector('.about-trigger');
+    const text = document.querySelector('.about-text');
+
+    trigger.addEventListener('click', () => {
+      text.classList.toggle('active');
+    });
+
+    // 사과 클릭 -> 전체(사진+사과) 블러 + 사과 위치에 작은 라벨(링크) 표시
+    const frame = document.querySelector('.frame');
+    const pop = document.getElementById('applePop');
+
+    function openApplePop(apple) {
+      // 블러 ON (사진 + 사과)
+      frame.classList.add('is-overlay-open');
+
+      // 라벨 텍스트/링크 세팅
+      pop.textContent = apple.dataset.link || 'open';
+      pop.href = apple.dataset.href || '#';
+
+      // 클릭한 사과 위치에 라벨 배치
+      const x = apple.offsetLeft;
+      const y = apple.offsetTop;
+
+      // 사과의 오른쪽 위쯤(원하면 숫자만 조절)
+      pop.style.left = (x + 16) + 'px';
+      pop.style.top  = (y - 14) + 'px';
+
+      pop.classList.add('active');
+    }
+
+    function closeApplePop() {
+      frame.classList.remove('is-overlay-open');
+      pop.classList.remove('active');
+    }
+
+    // 사과 클릭 -> 라벨 열기
+    document.querySelectorAll('.apple').forEach((apple) => {
+      apple.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openApplePop(apple);
+      });
+    });
+
+    // 화면 아무데나 클릭하면 닫기 (라벨 클릭은 이동이므로 제외)
+    document.addEventListener('click', (e) => {
+      if (e.target === pop) return;
+      closeApplePop();
+    });
+
+    // ESC로 닫기
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeApplePop();
+    });
+
+      const pill = document.querySelector('.pill-label');
+
+    if (pill) {
+      const text = pill.textContent.trim();
+      pill.textContent = "";
+
+      [...text].forEach((char) => {
+        const span = document.createElement("span");
+        span.classList.add("char");
+        span.textContent = char === " " ? "\u00A0" : char;
+
+        // 🎲 랜덤 위아래 이동 (-3px ~ 3px)
+        const y = (Math.random() * 6 - 3).toFixed(2);
+
+        // 🎲 랜덤 회전 (-3deg ~ 3deg)
+        const r = (Math.random() * 6 - 3).toFixed(2);
+
+        span.style.transform = `translateY(${y}px) rotate(${r}deg)`;
+
+        pill.appendChild(span);
+      });
+    }
+  </script>
 </body>
 </html>
