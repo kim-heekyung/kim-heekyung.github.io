@@ -176,7 +176,7 @@ body {
 .ladder-fixed{
   position: absolute;
 
-  /* ✅ 프레임(.frame) 기준 좌표 */
+  
   left: 75%;
   top: 78%;
 
@@ -198,7 +198,7 @@ body {
 .ladder-label{
   position: absolute;
 
-  /* ✅ 프레임(.frame) 기준 좌표 */
+  
   left: 90%;
   top: 93%;
 
@@ -216,7 +216,7 @@ body {
 
   white-space: nowrap;
 
-  background: transparent;     /* ✅ 본체 제거 */
+  background: transparent;     
   box-shadow: none;
 
   padding: 6px 34px;
@@ -229,7 +229,7 @@ body {
   font-weight: 200;
   letter-spacing: 0.70em;
 
-  pointer-events: none;        /* ✅ 장식 */
+  pointer-events: none;        
   -webkit-tap-highlight-color: transparent;
 
 }
@@ -275,4 +275,45 @@ body {
   display: inline-block;
   transition: transform 0.3s ease;
 }
+
+
+@media (max-width: 520px) {
+
+  .apple{
+    transform: scale(0.5);
+  }
+
+  .ladder-fixed{
+    display: none;
+  }
+
+  .ladder-label{
+    position: static;
+    transform: none;
+    margin-top: 24px;
+    text-align: center;
+
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    /*letter-spacing: 0.2em;*/
+    
+    /*left: 72%;           */
+    /*top: 92%;            */
+  }
+
+  
+  .pill-label{
+
+    font-size: 11px;
+    padding: 6px 18px;
+    letter-spacing: 0.55em;
+  }
+
+  .pill-label::before{ inset: -14px -22px; display: none;}
+  .pill-label::after { inset: -28px -46px; display: none;}
+
+}
+
+
 
